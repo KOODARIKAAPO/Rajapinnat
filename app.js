@@ -5,6 +5,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var exampleRouter = require('./routes/example');
 
 var app = express();
 
@@ -14,7 +15,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware-funktio, joka suoritetaan jokaiselle pyynnölle
+app.use(
+    function (req, res, next) {
+        console.log('The common middleware called');
+        next();
+    }
+);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/', exampleRouter);
 
 module.exports = app;
