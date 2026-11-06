@@ -8,6 +8,9 @@ var usersRouter = require('./routes/users');
 var exampleRouter = require('./routes/example');
 var bookRouter = require('./routes/book');
 var borrowerRouter = require('./routes/borrower');
+var opiskelijaRouter = require('./routes/opiskelija');
+var opintojaksoRouter = require('./routes/opintojakso');
+var arviointiRouter = require('./routes/arviointi');
 
 var app = express();
 
@@ -30,5 +33,8 @@ app.use('/users', usersRouter);
 app.use('/', exampleRouter);
 app.use('/book', bookRouter);
 app.use('/borrower', borrowerRouter);
+app.use('/opiskelija', opiskelijaRouter);
+app.use('/opintojakso', opintojaksoRouter);
+app.use('/arviointi', arviointiRouter);
 
 module.exports = app;

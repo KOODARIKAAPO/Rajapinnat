@@ -2,6 +2,7 @@
 
 - [Routing ja Middleware](#routing-ja-middleware)
 - [CRUD: book ja borrower](#crud-book-ja-borrower)
+- [CRUD: Opintorekisteri](#crud-opintorekisteri)
 
 ## Routing ja Middleware
 
@@ -98,3 +99,98 @@ POST- ja PUT-pyynnöissä data lähetetään muodossa Body → raw → JSON.
 `DELETE http://localhost:3000/borrower/6`
 
 ![DELETE DELETE /borrower/6](borrower_delete.png)
+
+## CRUD: Opintorekisteri
+
+Tietokanta `arviointi`, taulut Opiskelija, Opintojakso ja Arviointi. Yksi opiskelija voi saada monta arviointia, ja yhdellä opintojaksolla voi olla monta arviointia.
+
+Koodi: [routes/opiskelija.js](../routes/opiskelija.js), [routes/opintojakso.js](../routes/opintojakso.js), [routes/arviointi.js](../routes/arviointi.js), mallit kansiossa [models/](../models/) ja yhteys [database_arviointi.js](../database_arviointi.js)
+
+Kaikki kuvat yhtenä PDF-tiedostona: **[CRUD_opintorekisteri.pdf](CRUD_opintorekisteri.pdf)**
+
+POST- ja PUT-pyynnöissä data lähetetään muodossa Body → raw → JSON.
+
+Vierasavainten käsittely:
+- Opiskelijan tai opintojakson poisto, kun siihen viitataan Arviointi-taulussa → `409 Conflict`
+- Arviointi olemattomalle opiskelijalle tai opintojaksolle → `400 Bad Request`
+
+### Taulu: Opiskelija
+
+#### READ – GET
+`GET http://localhost:3000/opiskelija`
+
+![READ GET /opiskelija](opiskelija_get_all.png)
+
+#### READ – GET
+`GET http://localhost:3000/opiskelija/1`
+
+![READ GET /opiskelija/1](opiskelija_get_one.png)
+
+#### CREATE – POST
+`POST http://localhost:3000/opiskelija`
+
+![CREATE POST /opiskelija](opiskelija_post.png)
+
+#### UPDATE – PUT
+`PUT http://localhost:3000/opiskelija/7`
+
+![UPDATE PUT /opiskelija/7](opiskelija_put.png)
+
+#### DELETE – DELETE
+`DELETE http://localhost:3000/opiskelija/7`
+
+![DELETE DELETE /opiskelija/7](opiskelija_delete.png)
+
+### Taulu: Opintojakso
+
+#### READ – GET
+`GET http://localhost:3000/opintojakso`
+
+![READ GET /opintojakso](opintojakso_get_all.png)
+
+#### READ – GET
+`GET http://localhost:3000/opintojakso/3`
+
+![READ GET /opintojakso/3](opintojakso_get_one.png)
+
+#### CREATE – POST
+`POST http://localhost:3000/opintojakso`
+
+![CREATE POST /opintojakso](opintojakso_post.png)
+
+#### UPDATE – PUT
+`PUT http://localhost:3000/opintojakso/12`
+
+![UPDATE PUT /opintojakso/12](opintojakso_put.png)
+
+#### DELETE – DELETE
+`DELETE http://localhost:3000/opintojakso/12`
+
+![DELETE DELETE /opintojakso/12](opintojakso_delete.png)
+
+### Taulu: Arviointi
+
+#### READ – GET
+`GET http://localhost:3000/arviointi`
+
+![READ GET /arviointi](arviointi_get_all.png)
+
+#### READ – GET
+`GET http://localhost:3000/arviointi/1`
+
+![READ GET /arviointi/1](arviointi_get_one.png)
+
+#### CREATE – POST
+`POST http://localhost:3000/arviointi`
+
+![CREATE POST /arviointi](arviointi_post.png)
+
+#### UPDATE – PUT
+`PUT http://localhost:3000/arviointi/17`
+
+![UPDATE PUT /arviointi/17](arviointi_put.png)
+
+#### DELETE – DELETE
+`DELETE http://localhost:3000/arviointi/17`
+
+![DELETE DELETE /arviointi/17](arviointi_delete.png)
